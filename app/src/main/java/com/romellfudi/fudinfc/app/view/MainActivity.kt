@@ -21,9 +21,10 @@ import com.romellfudi.fudinfc.util.async.WriteCallbackNfc
 import com.romellfudi.fudinfc.util.interfaces.NfcReadUtility
 import com.romellfudi.fudinfc.util.interfaces.NfcWriteUtility
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
 import org.koin.core.parameter.parametersOf
+import org.koin.core.component.inject
+import org.koin.java.KoinJavaComponent.inject
 import java.math.BigInteger
 
 class MainActivity : NfcAct(), KoinComponent {
@@ -116,8 +117,7 @@ class MainActivity : NfcAct(), KoinComponent {
             WriteCallbackNfc(mTaskCallback, mOpCallback!!).executeWriteOperation()
             mOpCallback = null
         } else {
-            var dataFull = "my mac: " +
-                    getMAC(intent.getParcelableExtra(NfcAdapter.EXTRA_TAG) as Tag)
+            var dataFull = "my mac: " + getMAC(intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG) as Tag)
             mNfcReadUtility.readFromTagWithMap(paramIntent)!!.values
                 .fold(dataFull) { full, st -> full + "\n${st}" }
                 .also { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() }

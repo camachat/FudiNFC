@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'digital.wup.android-maven-publish'
 
 ext {
     bintrayRepo = 'maven'
@@ -26,8 +26,7 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 18
@@ -44,9 +43,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-//    implementation 'com.intellij:annotations:12.0'
-    implementation "androidx.core:core-ktx:+"
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
@@ -63,8 +61,11 @@ task createJar(type: Copy) {
 
 createJar.dependsOn(deleteJar, build)
 
-apply from: 'https://raw.githubusercontent.com/romellfudi/assets/bintray/artifactory_bintray.gradle'
-apply from: 'https://raw.githubusercontent.com/romellfudi/assets/bintray/artifactory_install.gradle'
-repositories {
-    mavenCentral()
-}
+//apply from: 'https://raw.githubusercontent.com/romellfudi/assets/bintray/artifactory_bintray.gradle'
+//apply from: 'https://raw.githubusercontent.com/romellfudi/assets/bintray/artifactory_install.gradle'
+//apply from: 'artifactory_bintray.gradle'
+//apply from: 'artifactory_install.gradle'
+//
+//repositories {
+//    mavenCentral()
+//}

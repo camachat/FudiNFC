@@ -10,6 +10,7 @@ import android.app.Application
 import com.romellfudi.fudinfc.app.di.moduleNFC
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 /**
  * Fudi Permission Application
@@ -23,7 +24,8 @@ class FudiApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            printLogger()
+            //androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
+            printLogger(Level.ERROR)
             androidContext(this@FudiApp)
             modules(moduleNFC)
         }
